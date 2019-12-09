@@ -22,7 +22,7 @@ public abstract class FeelingDatabase : RoomDatabase() {
             if(tempDB!=null){
                 return tempDB
             }
-                
+
             synchronized(this){
                 val_instance= Room.databaseBuilder(
                     context.applicationContext,
