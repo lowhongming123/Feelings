@@ -6,34 +6,31 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = arrayOf(Feeling::class),version = 1)
-
-public abstract class FeelingDatabase : RoomDatabase() {
+public abstract class FeelingDatabase: RoomDatabase(){
     //create an instance of DAO
-    abstract fun feelingDao():FeelingDao
+    abstract fun feelingDAO(): FeelingDao
 
     companion object{
-        //Ensure only one instance of the database is created
+        //ensure only one instance of the database is created
         @Volatile
-        private var INSTANCE : FeelingDatabase?=null
+        private var INSTANCE : FeelingDatabase? = null
 
-        //Function to obtain or create the database
-        fun getDatabase(context:Context):FeelingDatabase{
-            var tempDB= INSTANCE
-            if(tempDB!=null){
+        //function to obtain or create the database
+        fun getDatabase(context: Context): FeelingDatabase{
+            var tempDB = INSTANCE
+            if(tempDB != null){
                 return tempDB
             }
-
             synchronized(this){
-                val_instance= Room.databaseBuilder(
+                val instance = Room.databaseBuilder(
                     context.applicationContext,
                     FeelingDatabase::class.java,
-                    name="feeling_db"
+                    "feeling_db"
                 ).build()
+                INSTANCE = instance
+                return instance
             }
-            INSTANCE=instance
-            return instance
+
         }
     }
-
-
 }

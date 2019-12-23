@@ -1,14 +1,16 @@
 package com.example.feelings
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 
 @Dao
-interface FeelingDao {
-    @Insert
-    suspend fun insertFeeling(feeling:Feeling)
+interface FeelingDao{
 
-    @Query("Select * FROM feeling")
-    fun getFeelings_:LiveData<Feeling>
+    @Insert
+    suspend fun insertFeeling(feeling: Feeling)
+
+    @Query("select * from feeling")
+    fun getFeelings() : LiveData<List<Feeling>>
 }
