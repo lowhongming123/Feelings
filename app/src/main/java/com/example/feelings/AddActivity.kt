@@ -39,11 +39,12 @@ class AddActivity : AppCompatActivity() {
         }
 
 
-        val name=editTextRemark.text.toString()
+
+        val remark=editTextRemark.text.toString()
 
 
         val intent=Intent()
-        intent.putExtra(EXTRA_MOOD,mood)
+        intent.putExtra(EXTRA_REMARK,remark)
 
 
         setResult(Activity.RESULT_OK,intent)

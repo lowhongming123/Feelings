@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 
 class FeelingRepository (private val feelingDao: FeelingDao){
 
-    val allFeelings:LiveData<List<Feeling>>=FeelingDao.get()
+    val allFeelings:LiveData<List<Feeling>>=feelingDao.getAllFeelings()
 
             suspend fun insert(feeling: Feeling){
-                FeelingDao.insert(feeling)
+                feelingDao.insert(feeling)
             }
 }
