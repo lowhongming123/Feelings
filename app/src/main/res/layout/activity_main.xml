@@ -7,29 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="layout/feeling_record" />
+        tools:listitem="@layout/feeling_record"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
         android:clickable="true"
-        android:focusable="true"
-        app:src="@drawable/ic_addbutton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteX="296dp"
-        tools:layout_editor_absoluteY="671dp" />
-
+        app:srcCompat="@drawable/ic_add_white_24dp"
+        android:focusable="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,26 +3,25 @@ package com.example.feelings
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class FeelingViewModel(application: Application):AndroidViewModel(application) {
+class FeelingViewModel(application: Application):AndroidViewModel(application){
 
-    //The ViewModel maintains a reference to the repository to
-    private val repository:FeelingRepository
+    private val repository: FeelingRepository
+    val allFeelings: LiveData<List<MyFeeling>>
 
-    //LiveData gives us updated words when they change
-    val allFeelings:LiveData<List<Feeling>>
+    init {
+        //get reference to the DAO
+        val feelingDAO = FeelingDatabase.getDatabase(application).feelingDAO()
 
-    init{
-        //Gets reference to FeelingDao from FeelingRoomDatabase to construct the correct FeelingRepository
-        val feelingDao = FeelingDatabase.getDatabase(application).feelingDao()
-        repository = FeelingRepository((feelingDao))
+        repository = FeelingRepository(feelingDAO)
+
         allFeelings = repository.allFeelings
+
     }
 
-    //ViewModel uses a coroutine to perform long running operations
-    fun insertFeeling(feeling: Feeling) = viewModelScope.launch{
+    fun insert(feeling: MyFeeling) = viewModelScope.launch{
         repository.insert(feeling)
     }
-
 }

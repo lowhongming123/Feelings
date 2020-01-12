@@ -2,11 +2,11 @@ package com.example.feelings
 
 import androidx.lifecycle.LiveData
 
-class FeelingRepository (private val feelingDao: FeelingDao){
+class FeelingRepository(private val feelingDAO: FeelingDAO) {
 
-    val allFeelings:LiveData<List<Feeling>>=feelingDao.getAllFeelings()
+    val allFeelings: LiveData<List<MyFeeling>> = feelingDAO.getFeelings()
 
-            suspend fun insert(feeling: Feeling){
-                feelingDao.insert(feeling)
-            }
+    suspend fun insert(myFeeling: MyFeeling){
+        feelingDAO.insertFeeling(myFeeling)
+    }
 }

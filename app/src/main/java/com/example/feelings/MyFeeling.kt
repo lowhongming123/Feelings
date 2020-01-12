@@ -6,10 +6,10 @@ import java.sql.Date
 
 @Entity(tableName="Feeling")
 
-data class Feeling(
+data class MyFeeling(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val mood: Int,
-    val created_at: Date,
+    val created_at: Long = System.currentTimeMillis(),
     val remarks: String
 ) {
 

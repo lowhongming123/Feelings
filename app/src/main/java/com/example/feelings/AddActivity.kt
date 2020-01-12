@@ -4,57 +4,51 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
+import com.google.android.material.transformation.ExpandableTransformationBehavior
 import kotlinx.android.synthetic.main.activity_add.*
 
 class AddActivity : AppCompatActivity() {
-    private var mood:Int =0// 1=sad, 2=neutral, 3=happy
+
+    private var mood:Int = 0 //0 = neutral,1 = happy, -1 = sad
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
-        buttonSave.setOnClickListener{
-            saveUser();
+        buttonSave.setOnClickListener {
+            saveFeeling()
         }
 
-        imageViewSad.setOnClickListener{
-            mood=1
-
+        imageViewHappy.setOnClickListener {
+            mood = 1
+            //it.background.setColorFilter()//set color
         }
 
-        imageViewNeutral.setOnClickListener{
-            mood=2
+        imageViewNeutral.setOnClickListener {
+            mood = 0
+            //it.background
         }
 
-        imageViewHappy.setOnClickListener{
-            mood=3
+        imageViewSad.setOnClickListener {
+            mood = -1
+            //set color
         }
     }
 
-    private fun saveUser(){
-        if(TextUtils.isEmpty(editTextRemark.text)){
-            editTextRemark.setError(("Value is required"))
-            return
-        }
-
-
-
-        val remark=editTextRemark.text.toString()
-
-
-        val intent=Intent()
-        intent.putExtra(EXTRA_REMARK,remark)
-
-
+    private fun saveFeeling(){
+        val intent = Intent()
+        intent.putExtra(EXTRA_MOOD,mood)
+        intent.putExtra(EXTRA_REMARK,editTextRemark.text.toString())
         setResult(Activity.RESULT_OK,intent)
-
         finish()
     }
 
     companion object{
-        const val EXTRA_MOOD="com.example.feelings.MOOD"
-        const val EXTRA_REMARK="com.example.feelings.REMARK"
+        const val EXTRA_MOOD = "com.example.feelings.MOOD"
+        const val EXTRA_REMARK = "com.example.feelings.REMARK"
     }
+
+
+
 
 }

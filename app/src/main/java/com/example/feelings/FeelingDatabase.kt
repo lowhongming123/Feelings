@@ -4,12 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import java.security.AccessControlContext
 
-@Database(entities = arrayOf(Feeling::class),version = 1)
+@Database(entities = arrayOf(MyFeeling::class),version = 1)
 public abstract class FeelingDatabase: RoomDatabase(){
     //create an instance of DAO
-    abstract fun feelingDao(): FeelingDao
+    abstract fun feelingDAO(): FeelingDAO
 
     companion object{
         //ensure only one instance of the database is created
